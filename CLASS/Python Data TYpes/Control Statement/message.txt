@@ -1,0 +1,2 @@
+In the beginning.
+.This is first message 
