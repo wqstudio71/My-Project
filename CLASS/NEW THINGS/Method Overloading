@@ -1,0 +1,781 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "f9de0943-5028-47ad-8839-5841e497b9d4",
+   "metadata": {},
+   "source": [
+    "# Methods Overloading"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "523a972d-56bb-45f7-90bd-eba0f0c4f820",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Example:\n",
+    "    def add(self, a, b=0, c=0):\n",
+    "        return a + b + c"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "951291c0-36aa-4287-90ed-59dad1e5721c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Example:\n",
+    "    def add(self, *args):\n",
+    "        if len(args) == 1:\n",
+    "            return args(0)\n",
+    "        if len(args) == 2:\n",
+    "            return args[0] + args[1]\n",
+    "        else:\n",
+    "            return \"Invalid\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "0adc6927-84a5-4bb4-9f35-83211cb087c7",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ex = Example()\n",
+    "ex.add(1,2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "c5b15fa3-ff72-4cba-b589-8c2d35862455",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(1, 0, 3, 5)"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "(1,0) + (3,5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0203cba3-88b8-4f02-ae88-ceed1cde389f",
+   "metadata": {},
+   "source": [
+    "# Inheritance"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "5679cf0b-a031-4fdb-92b6-0a15b3959a16",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Single Inheritance = One base class and one derived class."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "449e74e2-67e8-4b62-b8b3-7983eb7c6f35",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Animal:\n",
+    "    def __init__(self, name, age):  # Corrected method name\n",
+    "        self.name = name\n",
+    "        self.age = age\n",
+    "\n",
+    "    def intro(self):\n",
+    "        print(f\"My name is {self.name}\")  # Corrected string formatting\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "d1ae7444-4065-4a7e-b0ef-ff6e79c0f0d8",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "SyntaxError",
+     "evalue": "invalid syntax (3025050125.py, line 3)",
+     "output_type": "error",
+     "traceback": [
+      "  \u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[29]\u001b[39m\u001b[32m, line 3\u001b[39m\n\u001b[31m    \u001b[39m\u001b[31msuper()_.init__(name, age)       # Correct use of super()\u001b[39m\n           ^\n\u001b[31mSyntaxError\u001b[39m\u001b[31m:\u001b[39m invalid syntax\n"
+     ]
+    }
+   ],
+   "source": [
+    "class Cat(Animal):\n",
+    "    def __init__(self, name, age, color):  # Fixed __init__ spelling\n",
+    "        super()_.init__(name, age)       # Correct use of super()\n",
+    "        self.color = color\n",
+    "\n",
+    "    def speak(self):\n",
+    "        print(\"Meowww\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "8560c8d1-b4f2-4202-8cb3-ca6e57a1c290",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "TypeError",
+     "evalue": "object.__init__() takes exactly one argument (the instance to initialize)",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mTypeError\u001b[39m                                 Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[25]\u001b[39m\u001b[32m, line 1\u001b[39m\n\u001b[32m----> \u001b[39m\u001b[32m1\u001b[39m cat = \u001b[43mCat\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mFluppy\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[32;43m3\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mBrown\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m)\u001b[49m\n",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[21]\u001b[39m\u001b[32m, line 3\u001b[39m, in \u001b[36mCat.__init__\u001b[39m\u001b[34m(self, name, age, color)\u001b[39m\n\u001b[32m      2\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34m__init__\u001b[39m(\u001b[38;5;28mself\u001b[39m, name, age, color):  \u001b[38;5;66;03m# Fixed __init__ spelling\u001b[39;00m\n\u001b[32m----> \u001b[39m\u001b[32m3\u001b[39m     \u001b[38;5;28;43msuper\u001b[39;49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\u001b[43m.\u001b[49m\u001b[34;43m__init__\u001b[39;49m\u001b[43m(\u001b[49m\u001b[43mname\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mage\u001b[49m\u001b[43m)\u001b[49m       \u001b[38;5;66;03m# Correct use of super()\u001b[39;00m\n\u001b[32m      4\u001b[39m     \u001b[38;5;28mself\u001b[39m.color = color\n",
+      "\u001b[31mTypeError\u001b[39m: object.__init__() takes exactly one argument (the instance to initialize)"
+     ]
+    }
+   ],
+   "source": [
+    "cat = Cat(\"Fluppy\", 3, \"Brown\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "2605d847-ed7f-425e-b24b-726c4345d343",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "AttributeError",
+     "evalue": "'Cat' object has no attribute 'name'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mAttributeError\u001b[39m                            Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[13]\u001b[39m\u001b[32m, line 1\u001b[39m\n\u001b[32m----> \u001b[39m\u001b[32m1\u001b[39m \u001b[43mcat\u001b[49m\u001b[43m.\u001b[49m\u001b[43mname\u001b[49m\n",
+      "\u001b[31mAttributeError\u001b[39m: 'Cat' object has no attribute 'name'"
+     ]
+    }
+   ],
+   "source": [
+    "cat.name"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c7067fa5-466b-45f9-811a-fefe78f66291",
+   "metadata": {},
+   "source": [
+    "# Multiple Inheritance"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "81fe133d-e041-455f-acc8-c4faf7fb2489",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Parent1:\n",
+    "    def func1(self):\n",
+    "        print(\"This is parent 1\")\n",
+    "\n",
+    "class Parent2:\n",
+    "    def func2(self):\n",
+    "        print(\"This is parent 2\")\n",
+    "\n",
+    "class Parent3:\n",
+    "    def func2(self):\n",
+    "        print(\"This is parent 3\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "e8b13781-a254-4b4a-a069-64a25a3a2630",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Child(Parent1, Parent2, Parent3):\n",
+    "    def func4(self):\n",
+    "        print(\"This is child function\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "28601726-7093-4ae5-9178-c6e213194555",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "obj = Child()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "b3cd7735-21de-4460-8daa-926248e6f1f3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is parent 1\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.func1()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "34aa3821-a923-4444-89aa-f2f48ab45a46",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is parent 2\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.func2()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "e13bc106-687e-49d6-9843-ccfa9de9f37c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is child function\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.func4()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "16a8361a-f4ce-4d06-a195-9a81f928645f",
+   "metadata": {},
+   "source": [
+    "# Multi-Level Inheritance"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "82a98800-661d-485c-946b-0f5302564b4b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class A:\n",
+    "    def method_a(self):\n",
+    "        print(\"This is method from Class A\")\n",
+    "\n",
+    "class B(A):\n",
+    "    def method_b(self):\n",
+    "        print(\"This is method from Class B\")\n",
+    "\n",
+    "class C(B):\n",
+    "    def method_c(self):\n",
+    "        print(\"This is method from Class C\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "bef5ec1a-0e6b-421d-a24b-11ecb076e9b4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "obj = C()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "f36c2551-f8d6-4536-9ce2-2fa877bc673f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is method from Class A\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.method_a()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "82f58d37-9f6b-4769-a279-22be9b2b4b6c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is method from Class B\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.method_b()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "9c7abc97-8782-4555-9217-f549d215f940",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is method from Class C\n"
+     ]
+    }
+   ],
+   "source": [
+    "obj.method_c()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "4809d38f-b515-4a7c-91a4-230bd65f4ed7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# NEW"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "b3e95b95-8250-4c38-8fdd-e549038c2d9b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Person:\n",
+    "    def __init__(self, name, age):  \n",
+    "        self.name = name\n",
+    "        self.age = age\n",
+    "\n",
+    "    def intro(self):\n",
+    "        print(f\"My name is {self.name}, and I am {self.age} years old.\") \n",
+    "\n",
+    "class Employee(Person):\n",
+    "    def __init__(self, name, age, empid):\n",
+    "        super().__init__(name, age)\n",
+    "        self.empid = empid\n",
+    "\n",
+    "    def intro(self):\n",
+    "        super().intro()\n",
+    "        print(f\"My employee ID is {self.empid}.\")\n",
+    "\n",
+    "class Manager(Employee):\n",
+    "    def __init__(self, name, age, empid, department):\n",
+    "        super().__init__(name, age, empid)\n",
+    "        self.department = department\n",
+    "\n",
+    "    def intro(self):\n",
+    "        super().intro()\n",
+    "        print(f\"I manage the {self.department} department.\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "9c41e006-54f2-44f5-95d9-80892551b431",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "My name is Alice, and I am 40 years old.\n",
+      "My employee ID is E123.\n",
+      "I manage the Engineering department.\n"
+     ]
+    }
+   ],
+   "source": [
+    "mgr = Manager(\"Alice\", 40, \"E123\", \"Engineering\")\n",
+    "mgr.intro()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "572af076-121d-40e4-8c34-4e0b85b54c5e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Person:\n",
+    "    def __init__(self, name, age):\n",
+    "        self.name = name\n",
+    "        self.age = age\n",
+    "\n",
+    "class Employee(Person):\n",
+    "    def __init__(self, name, age, employee_id):\n",
+    "        super().__init__(self, name, age)\n",
+    "        self.employee_id = employee_id\n",
+    "\n",
+    "class Manager(Employee):\n",
+    "    def __init__(self, name, age, employee_id, department):\n",
+    "        .__init__(self, name, age, employee_id)\n",
+    "        self.department = department\n",
+    "\n",
+    "    def get_details(self):\n",
+    "        return f\"Name: {self.name}, Age: {self.age}, ID: {self.employee_id}, Department: {self.department}\"\n",
+    " "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "19fd3682-0555-47d4-82a3-01d598ceec10",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Name: Rohit, Age: 18, ID: 982, Department: Mathematics\n"
+     ]
+    }
+   ],
+   "source": [
+    "mgr = Manager(\"Rohit\", 18, \"982\", \"Mathematics\")\n",
+    "print(mgr.get_details())\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "500e6e0d-5381-42f9-a3e6-dde65e077b97",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'Name: Rohit, Age: 18, ID: 982, Department: Mathematics'"
+      ]
+     },
+     "execution_count": 52,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "mgr.get_details()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3c955a74-0fd8-44ee-8c17-4a75366ff67e",
+   "metadata": {},
+   "source": [
+    "# Hierarchical Inheritance"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "id": "64971497-b083-4301-99bb-1eadaebef205",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "SyntaxError",
+     "evalue": "invalid syntax (2549217271.py, line 2)",
+     "output_type": "error",
+     "traceback": [
+      "  \u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[64]\u001b[39m\u001b[32m, line 2\u001b[39m\n\u001b[31m    \u001b[39m\u001b[31mdef __init__(self, name, age==2):\u001b[39m\n                                ^\n\u001b[31mSyntaxError\u001b[39m\u001b[31m:\u001b[39m invalid syntax\n"
+     ]
+    }
+   ],
+   "source": [
+    "class Animal:\n",
+    "    def __init__(self, name, age==2):  \n",
+    "        self.name = name\n",
+    "        self.age = age\n",
+    "\n",
+    "    def intro(self):\n",
+    "        print(f\"My name is {self.name}\")  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "b3ce9d39-9272-4d9c-a5a3-efa5d62b7afb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Cat(Animal):\n",
+    "    def speak(self):\n",
+    "        return \"Meow\"\n",
+    "\n",
+    "class Dog(Animal):\n",
+    "    def speak(self):\n",
+    "        return \"Bhow\"\n",
+    "\n",
+    "class Lion(Animal):\n",
+    "    def speak(self):\n",
+    "        return \"Roar\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "3961fd1c-a128-4f06-abe1-a86e5e8542e9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "cat = Cat(\"Fluffy\", 33)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "id": "031ecc01-1a19-48d6-a033-a8b0e8bb7e59",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "My name is Fluffy\n"
+     ]
+    }
+   ],
+   "source": [
+    "cat.intro()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "id": "4ab21d03-2ab1-4e33-b86e-c94f9a264c32",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'Meow'"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "cat.speak()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "963b708b-6859-4adf-9592-08098b173146",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4ced4c49-025e-4af4-8a36-802783c78734",
+   "metadata": {},
+   "source": [
+    "# Hybrid Inheritence"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "id": "2fc877fd-e915-4726-a53b-61bfe7c2e2e9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Animal:\n",
+    "    def __init__(self, name, age = 2):  \n",
+    "        self.name = name\n",
+    "        self.age = age\n",
+    "\n",
+    "    def intro(self):\n",
+    "        print(f\"My name is {self.name}\")  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 78,
+   "id": "18b8691c-23d6-4d10-922c-90fb394d8924",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Mammal(Animal):\n",
+    "    def __init__(self, name, fur = False):\n",
+    "        super().__init__(name)\n",
+    "        self.fur = True\n",
+    "\n",
+    "    def birth(self):\n",
+    "        print(f\"{self, name} give birth to live ones !\")\n",
+    "\n",
+    "class Birds(Animal):\n",
+    "    def fly(self):\n",
+    "        print(f\"{self.name} can fly !\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 79,
+   "id": "d51975d0-7841-4213-b623-2eb9ed3bdeca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Bat(Mammal, Birds):\n",
+    "    pass"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 74,
+   "id": "9a434013-e76b-4541-9891-9d78807b31b0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "b = Bat(\"Bruce\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "id": "e1cbe3aa-bbfb-49a9-847f-8104c4b51c7e",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "My name is Bruce\n"
+     ]
+    }
+   ],
+   "source": [
+    "b.intro()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 81,
+   "id": "764c0580-cd45-47c2-9fe3-4095a5242420",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(self, name) give birth to live ones !\n"
+     ]
+    }
+   ],
+   "source": [
+    "b.birth()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 77,
+   "id": "bc6ef811-00f6-4356-96c6-8b7658ee9072",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Bruce can fly !\n"
+     ]
+    }
+   ],
+   "source": [
+    "b.fly()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "845807a0-8409-47b5-99a8-9753456da129",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  },
+  "widgets": {
+   "application/vnd.jupyter.widget-state+json": {
+    "state": {},
+    "version_major": 2,
+    "version_minor": 0
+   }
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
